@@ -1,4 +1,5 @@
 package estoque;
+
 import java.util.Scanner;
 
 public class Principal {
@@ -21,9 +22,15 @@ public class Principal {
 	}
 
 	private static void efetuarBaixaEstoque(Produto produto, int quantidade) {
-		produto.retirarEstoque(quantidade);
-		System.out.printf("%d unidades retiradas do estoque. Estoque atual: %d%n", quantidade,
-				produto.getQuantidadeEstoque());
+		try { /* Tente executar esse bloco, o que vai colocar dentro do try vai depender da logica  */
+			produto.retirarEstoque(quantidade);
+			System.out.printf("%d unidades retiradas do estoque. Estoque atual: %d%n", quantidade,
+					produto.getQuantidadeEstoque());
+		} catch (IllegalArgumentException iae) { /* caso for lan�ada a exception eu quero capiturar */
+			System.out.println("Erro ao efetuar baixa no estoque: " + iae.getMessage());
+		}
+		
+		/* IllegalArgumentException iae - tipo da exce��o, esse 'iae' � uma variavel */
 	}
 
 }
