@@ -6,7 +6,7 @@ public class Principal {
 
     public static void main(String[] args) {
         Produto produto = new Produto("Apple Watch");
-        produto.ativar();
+//        produto.ativar();
         produto.adicionarEstoque(20);
 
         comprar(produto);
@@ -23,24 +23,29 @@ public class Principal {
                 efetuarBaixaEstoque(produto, quantidade);
                 System.out.println("Compra realizada");
 
-                break; /* se chegar a executar ele sai do while usando break*/
-            } catch (IllegalArgumentException iae) { /* caso ele saia ele printa na tela o erro */
-//                iae.printStackTrace(System.out);
-                iae.printStackTrace(); /* vai imprimir o erro no console */
+                break;
+            } catch (IllegalArgumentException iae) { 
                 System.out.println("Erro na compra: " + iae.getMessage());
+            } catch (IllegalStateException ise) { // Pode ter mais de um Catch
+                System.out.println("Erro na compra: " + ise.getMessage());
+
+                System.out.print("Deseja ativar o produto? ");
+
+                if (scanner.nextBoolean()) { /* se for verdadeira*/
+                    produto.ativar(); /* vai chamar o produto.ativar*/
+                    System.out.println("Ok. Produto já foi ativado");
+                } else {
+                    System.out.println("Ok. Compra não pode ser realizada");
+                    break;
+                }
             }
-        } while (true); // Loop infinito, vai ficar retornando pro do
+        } while (true);
     }
 
     private static void efetuarBaixaEstoque(Produto produto, int quantidade) {
-//        try {
-            produto.retirarEstoque(quantidade);
-            System.out.printf("%d unidades retiradas do estoque. Estoque atual: %d%n",
-                    quantidade, produto.getQuantidadeEstoque());
-//        } catch (IllegalArgumentException iae) {
-//            System.out.println("Erro ao efetuar baixa no estoque: " + iae.getMessage());
-//            throw iae;
-//        }
+        produto.retirarEstoque(quantidade);
+        System.out.printf("%d unidades retiradas do estoque. Estoque atual: %d%n",
+                quantidade, produto.getQuantidadeEstoque());
     }
 
 }
