@@ -31,7 +31,7 @@ public class Principal {
 
                 System.out.print("Deseja ativar o produto? ");
 
-                if (scanner.nextBoolean()) { /* se for verdadeira*/
+                if (scanner.nextBoolean()) { /* se for verdadeira */
                     produto.ativar(); /* vai chamar o produto.ativar*/
                     System.out.println("Ok. Produto já foi ativado");
                 } else {
