@@ -1,4 +1,4 @@
-package com.algaworks.estoque;
+package estoque;
 
 public class ProdutoInativoException extends ProdutoException {
 

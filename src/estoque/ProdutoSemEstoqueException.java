@@ -1,4 +1,4 @@
-package com.algaworks.estoque;
+package estoque;
 
 public class ProdutoSemEstoqueException extends ProdutoException {
 
