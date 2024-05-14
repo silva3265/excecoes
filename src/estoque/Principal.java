@@ -26,9 +26,9 @@ public class Principal {
 				break;
 			} catch (IllegalArgumentException iae) {
 				System.out.println("Erro na compra: " + iae.getMessage());
-			} catch (ProdutoSemEstoqueException e) {
-				System.out.printf("Erro na compra: %s. Estoque disponível: %d. Estoque necessário: %d%n",
-						e.getMessage(), e.getEstoqueDisponivel(), e.getEstoqueNecessario());
+//            } catch (ProdutoSemEstoqueException e) {
+//                System.out.printf("Erro na compra: %s. Estoque disponível: %d. Estoque necessário: %d%n",
+//                        e.getMessage(), e.getEstoqueDisponivel(), e.getEstoqueNecessario()); /* Aqui faziamos um tratamento bem especifico para esse tipo de problema */
 			} catch (ProdutoInativoException e) {
 				System.out.println("Erro na compra: " + e.getMessage());
 
@@ -41,6 +41,9 @@ public class Principal {
 					System.out.println("Ok. Compra não pode ser realizada");
 					break;
 				}
+			} catch (ProdutoException e) { /* ProdutoException e - tratamento menos especifico */
+//                System.out.println(e.getClass().getName());
+				System.out.println("Erro na compra: " + e.getMessage());
 			}
 		} while (true);
 	}
